@@ -19,13 +19,23 @@ export interface Student {
   totalArrears: number;
 }
 
+export interface PaymentDetails {
+  pembangunan: number;
+  pendaftaran: number;
+  spp: number;
+  buku: number;
+  seragam: number;
+  tunggakan: number;
+  lainnya: number;
+}
+
 export interface PaymentTransaction {
   id: string;
   date: string;
   studentId: string;
   studentName: string;
-  item: 'SPP' | 'Seragam' | 'Buku' | 'Lainnya';
-  amount: number;
+  details: PaymentDetails;
+  totalAmount: number;
   cashier: string;
 }
 
@@ -50,9 +60,21 @@ export const mockStudents: Student[] = [
 
 // Data Transactions
 export const mockTransactions: PaymentTransaction[] = [
-  { id: 'TRX-1001', date: '2026-03-10T08:00:00Z', studentId: 'S001', studentName: 'Ahmad Fajri', item: 'SPP', amount: 250000, cashier: 'Budi Santoso' },
-  { id: 'TRX-1002', date: '2026-03-10T09:15:00Z', studentId: 'S005', studentName: 'Eko Patrio', item: 'Seragam', amount: 150000, cashier: 'Agus Pratama' },
-  { id: 'TRX-1003', date: '2026-03-09T10:30:00Z', studentId: 'S003', studentName: 'Cipto Mangunkusumo', item: 'Buku', amount: 120000, cashier: 'Budi Santoso' },
+  { 
+    id: 'TRX-1001', date: '2026-03-10T08:00:00Z', studentId: 'S001', studentName: 'Ahmad Fajri', 
+    details: { pembangunan: 0, pendaftaran: 0, spp: 250000, buku: 0, seragam: 0, tunggakan: 0, lainnya: 0 },
+    totalAmount: 250000, cashier: 'Budi Santoso' 
+  },
+  { 
+    id: 'TRX-1002', date: '2026-03-10T09:15:00Z', studentId: 'S005', studentName: 'Eko Patrio', 
+    details: { pembangunan: 0, pendaftaran: 0, spp: 0, buku: 0, seragam: 150000, tunggakan: 0, lainnya: 0 },
+    totalAmount: 150000, cashier: 'Agus Pratama' 
+  },
+  { 
+    id: 'TRX-1003', date: '2026-03-09T10:30:00Z', studentId: 'S003', studentName: 'Cipto Mangunkusumo', 
+    details: { pembangunan: 0, pendaftaran: 0, spp: 0, buku: 120000, seragam: 0, tunggakan: 0, lainnya: 0 },
+    totalAmount: 120000, cashier: 'Budi Santoso' 
+  },
 ];
 
 export const mockStats = {
@@ -62,7 +84,7 @@ export const mockStats = {
     activeUsers: mockUsers.filter(u => u.status === 'active').length,
   },
   staff: {
-    todayIncome: mockTransactions.filter(t => t.date.startsWith('2026-03-10')).reduce((acc, curr) => acc + curr.amount, 0),
+    todayIncome: mockTransactions.filter(t => t.date.startsWith('2026-03-10')).reduce((acc, curr) => acc + curr.totalAmount, 0),
     totalArrears: mockStudents.reduce((acc, curr) => acc + curr.totalArrears, 0),
   }
 };

@@ -1,12 +1,19 @@
 "use client";
 
 import { useAuthStore } from "@/store/useAuthStore";
-import { mockStats } from "@/lib/mock-data";
+import { useAppStore } from "@/store/useAppStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, AlertCircle, TrendingUp } from "lucide-react";
 
 export default function StaffDashboard() {
   const { role } = useAuthStore();
+  const { transactions, students } = useAppStore();
+
+  const todayIncome = transactions
+    .filter(t => new Date(t.date).toDateString() === new Date().toDateString())
+    .reduce((acc, curr) => acc + curr.totalAmount, 0);
+
+  const totalArrears = students.reduce((acc, curr) => acc + curr.totalArrears, 0);
 
   return (
     <div className="space-y-6">
@@ -25,7 +32,7 @@ export default function StaffDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-              Rp {mockStats.staff.todayIncome.toLocaleString('id-ID')}
+              Rp {todayIncome.toLocaleString('id-ID')}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Berdasarkan transaksi yang tercatat hari ini
@@ -42,7 +49,7 @@ export default function StaffDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
-              Rp {mockStats.staff.totalArrears.toLocaleString('id-ID')}
+              Rp {totalArrears.toLocaleString('id-ID')}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Akumulasi siswa berstatus Nunggak

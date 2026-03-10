@@ -1,12 +1,17 @@
 "use client";
 
 import { useAuthStore } from "@/store/useAuthStore";
-import { mockStats } from "@/lib/mock-data";
+import { useAppStore } from "@/store/useAppStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, ArrowUpRight, ArrowDownRight, Users } from "lucide-react";
 
 export default function AdminDashboard() {
   const { role } = useAuthStore();
+  const { transactions, users } = useAppStore();
+
+  const totalIncome = transactions.reduce((acc, curr) => acc + curr.totalAmount, 0);
+  const activeUsers = users.filter(u => u.status === 'active').length;
+  const monthlyExpense = 8200000; // Masih Dummy/Hardcode karena belum ada tabel Pengeluaran
 
   return (
     <div className="space-y-6">
@@ -25,7 +30,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-              Rp {mockStats.admin.totalIncome.toLocaleString('id-ID')}
+              Rp {totalIncome.toLocaleString('id-ID')}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Bulan ini
@@ -42,7 +47,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-red-600 dark:text-red-400">
-              Rp {mockStats.admin.monthlyExpense.toLocaleString('id-ID')}
+              Rp {monthlyExpense.toLocaleString('id-ID')}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Bulan ini
@@ -59,7 +64,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-              {mockStats.admin.activeUsers}
+              {activeUsers}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Staff & Admin
