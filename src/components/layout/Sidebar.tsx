@@ -43,8 +43,8 @@ export function Sidebar({ className }: SidebarProps) {
             <div className="bg-blue-600 p-2 rounded-xl shadow-sm">
               <School className="h-6 w-6 text-white" />
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-800">
-              EduFinance
+            <h2 className="text-1xl font-bold tracking-tight text-slate-800">
+              SDIT AL-FATH
             </h2>
           </Link>
           <div className="space-y-1.5">

@@ -25,7 +25,7 @@ export function Header() {
           </SheetContent>
         </Sheet>
         <div className="flex items-center gap-2">
-           <span className="font-bold text-primary">EduFinance</span>
+           <span className="font-bold text-primary">SDIT AL-FATH</span>
         </div>
       </div>
 

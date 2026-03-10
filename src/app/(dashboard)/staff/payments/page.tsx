@@ -259,7 +259,7 @@ export default function StaffPayments() {
                                 Pratinjau struk sebelum dicetak.
                               </DialogDescription>
                             </DialogHeader>
-                            <div className="p-6 border rounded-lg bg-card text-center space-y-4 font-mono text-sm">
+                            <div className="p-6 border rounded-lg bg-card text-center space-y-4 font-mono text-sm max-h-[50vh] overflow-y-auto">
                               <div className="font-bold text-lg mb-4">EDONUSA PRIMARY SCHOOL</div>
                               <div className="text-left border-b border-dashed pb-4 mb-4">
                                 <div>No. Trx: {trx.id}</div>
