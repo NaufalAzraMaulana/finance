@@ -15,7 +15,7 @@ export default function AdminDashboard() {
         <p className="text-muted-foreground">Ringkasan aktivitas dan metrik keuangan sekolah.</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="border-slate-100 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Pemasukan</CardTitle>

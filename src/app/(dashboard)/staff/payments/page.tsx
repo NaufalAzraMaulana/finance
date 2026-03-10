@@ -103,7 +103,7 @@ export default function StaffPayments() {
       <Card className="border-slate-100 shadow-sm">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[800px] sm:min-w-full">
               <TableHeader className="bg-muted/50">
                 <TableRow>
                   <TableHead>ID Transaksi</TableHead>

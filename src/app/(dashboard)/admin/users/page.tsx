@@ -38,7 +38,7 @@ export default function AdminUsers() {
       <Card className="border-slate-100 shadow-sm">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[600px] sm:min-w-full">
               <TableHeader className="bg-muted/50">
                 <TableRow>
                   <TableHead>Nama</TableHead>
